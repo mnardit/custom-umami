@@ -1,7 +1,7 @@
 FROM umamisoftware/umami:postgresql-latest
 
-# Copy the middleware file
+USER root
 COPY middleware.js /app/middleware.js
-
-# Set permissions
-RUN chmod 644 /app/middleware.js
+RUN chown node:node /app/middleware.js && \
+    chmod 644 /app/middleware.js
+USER node
